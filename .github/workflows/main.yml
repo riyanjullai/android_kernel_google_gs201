@@ -95,12 +95,13 @@ jobs:
         echo "CONFIG_PID_NS=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_NET_NS=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_CHECKPOINT_RESTORE=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
-
+        echo "CONFIG_SYSVIPC=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
     - name: Enable Docker configs
       if: ${{ github.event.inputs.build_docker == 'true' }}
       working-directory: ${{ env.KERNEL_NAME }}
       run: |
         echo "⚙️ Enabling Docker configs..."
+        echo "CONFIG_USER_NS=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_CGROUPS=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_CGROUP_FREEZER=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_CGROUP_DEVICE=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
@@ -110,7 +111,7 @@ jobs:
         echo "CONFIG_CGROUP_BPF=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_CGROUP_PIDS=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_CPUSETS=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
-        echo "CONFIG_MEMCG=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
+        echo "CONFIG_IP_VS=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_MEMCG_SWAP=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_BLK_CGROUP=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
         echo "CONFIG_CGROUP_NET_PRIO=y" >> arch/arm64/configs/${{ env.DEFCONFIG }}
